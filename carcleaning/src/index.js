@@ -1,17 +1,51 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 import './index.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import Navbar from './Components/Navbar';
+
+// ✅ Inline ProtectedRoute
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" />;
+};
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { path: '/', element: <Navigate to="/login" /> },
+      { path: '/login', element: <Login /> },
+      { path: '/register', element: <Register /> },
+
+      // ✅ Protected Route for Navbar
+      {
+        path: '/navbar',
+        element: (
+          <ProtectedRoute>
+            <Navbar />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
