@@ -2,18 +2,22 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
-import Hero from './Components/Hero';
+import About from './Components/About';  // Changed from Components to Pages
+// import { Contact } from 'lucide-react';
 
+import Contact from './Components/Contact';
 
 function App() {
   return (
     <div >
      <Navbar/>
-     <Hero/>
+     <Contact/>
+     <About />
     <Footer/>
     
     </div>
-  );
+
+  )
 }
 
 export default App;
