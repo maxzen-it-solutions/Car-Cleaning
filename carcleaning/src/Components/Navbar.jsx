@@ -28,8 +28,8 @@ const navigate = useNavigate();
 
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex flex-row space-x-6 font-medium text-base">
-          <li className="text-yellow-400 font-bold cursor-pointer">Homepage</li>
-
+          {/* <li className="text-yellow-400 font-bold cursor-pointer">Homepage</li> */}
+<Link to="/navbar" className="hover:text-yellow-400 cursor-pointer">Homepage</Link>
                     <Link to="/about" className="hover:text-yellow-400 cursor-pointer">About Us</Link>
           <li className="hover:text-yellow-400 cursor-pointer">Services ▼</li>
           <li className="hover:text-yellow-400 cursor-pointer">Pages ▼</li>
@@ -67,7 +67,7 @@ const navigate = useNavigate();
             {/* Header in mobile menu */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
               <div className="flex items-center space-x-2">
-                <img src="/logo.png" alt="Cars Buddy" className="h-8 w-auto" />
+                <img src="" alt="Cars Buddy" className="h-8 w-auto" />
                 <span className="text-xl font-bold">
                   <span className="text-yellow-400">Cars</span>Buddy
                 </span>
@@ -78,7 +78,8 @@ const navigate = useNavigate();
             </div>
 
             {/* Menu links */}
-            <ul className="flex flex-col px-6 py-6 space-y-6 text-lg">
+             <ul className="flex flex-col px-6 py-6 space-y-6 text-lg">
+              {/* <Link to="/hero" className="hover:text-yellow-400 cursor-pointer">Homepage</Link> */}
                         <Link to="/about" className="hover:text-yellow-400 cursor-pointer">About Us</Link>
 
               <li className="hover:text-yellow-400 cursor-pointer">Services </li>

@@ -13,9 +13,13 @@ import App from './App';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Navbar from './Components/Navbar';
+
+import Hero from './Components/Hero';
 import About from './Components/About';
 import  Contact  from './Components/Contact';
 import AdminDashboard from './Components/AdminDashboard';
+
+
 
 // ✅ Inline ProtectedRoute
 const ProtectedRoute = ({ children }) => {
@@ -34,14 +38,16 @@ const router = createBrowserRouter([
       {path: '/contact', element: <Contact />},
       {path: '/about', element: <About />},
       {path:'/admin-dashboard', element:<AdminDashboard/>},
-      // ✅ Protected Route for Navbar
+  
+    
       {
         path: '/navbar',
         element: (
           <ProtectedRoute>
-            <Navbar />
+            <Hero/>
           </ProtectedRoute>
         ),
+       
       },
     ],
   },
