@@ -8,14 +8,15 @@ function Register() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col justify-center px-6 py-8 lg:px-8">
+ 
+      <div className="flex flex-col justify-center px-6 py-8 lg:px-8 bg-black">
       <div className="mx-auto w-full max-w-4xl">
-        <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900">
+        <h2 className="text-center text-2xl  tracking-tight font-bold text-yellow-500">
           Create a New Account
         </h2>
       </div>
 
-      <div className="mt-6 mx-auto w-full max-w-4xl">
+      <div className="mt-6 mx-auto w-full max-w-4xl ">
         <Formik
           initialValues={{
             name: '',
@@ -68,131 +69,124 @@ function Register() {
 
           }}
 
+
         >
           {() => (
-            <Form className="space-y-6 bg-white p-6 rounded-lg shadow">
-              {/* Card: Combined User + Car Details */}
-              <div className="border rounded-lg p-4 bg-gray-50">
-                <h3 className="text-lg font-semibold mb-4 text-center text-gray-700">Registration Form</h3>
+            <Form className="space-y-6 bg-black p-6 rounded-lg shadow border border-yellow-500 shadow-[0_0_10px_#facc15]">
+             
+                <h3 className="text-lg font-semibold mb-4 text-center text-yellow-500">Registration Form</h3>
 
                 {/* User Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">Name</label>
+                    <label className="block text-white font-bold text-sm mb-1">Name</label>
                     <Field
                       type="text"
                       name="name"
-                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                      className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                     />
                     <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">Email address</label>
+                    <label className="block text-white font-bold text-sm mb-1">Email address</label>
                     <Field
                       type="email"
                       name="email"
-                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                      className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                     />
                     <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">Password</label>
+                    <label className="block text-white font-bold text-sm mb-1">Password</label>
                     <Field
                       type="password"
                       name="password"
-                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                      className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                     />
                     <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-900">Confirm Password</label>
+                    <label className="block text-white font-bold text-sm mb-1">Confirm Password</label>
                     <Field
                       type="password"
                       name="confirmPassword"
-                      className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                      className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                     />
                     <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
                   </div>
                 </div>
 
                 {/* Car Details */}
-                <div className="border rounded-lg p-4 bg-gray-50">
-                  <h3 className="text-lg font-semibold mb-4 text-center text-gray-700">Car Details</h3>
+                <div className=" rounded-lg p-8 bg-black border border-yellow-500 ">
+                  <h3 className="text-lg font-semibold mb-4 text-center text-yellow-500">Car Details</h3>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Car Name */}
+             
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Car Name</label>
+                      <label className="block text-white font-bold text-sm mb-1">Car Name</label>
                       <Field
                         type="text"
                         name="carName"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
 
-                    {/* Car Model */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Car Model</label>
+                      <label className="block text-white font-bold text-sm mb-1">Car Model</label>
                       <Field
                         type="text"
                         name="carModel"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
 
-                    {/* Car Colour */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Car Colour</label>
+                      <label className="block text-white font-bold text-sm mb-1">Car Colour</label>
                       <Field
                         type="text"
                         name="carColor"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
 
-                    {/* Car Number */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Car Number</label>
+                      <label className="block text-white font-bold text-sm mb-1">Car Number</label>
                       <Field
                         type="text"
                         name="carNumber"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
 
-                    {/* Address */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Address</label>
+                      <label className="block text-white font-bold text-sm mb-1">Address</label>
                       <Field
                         as="textarea"
                         name="address"
                         rows="2"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
 
-                    {/* Parking */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-900">Parking</label>
+                      <label className="block text-white font-bold text-sm mb-1">Parking</label>
                       <Field
                         type="text"
                         name="parking"
-                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                        className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
                       />
                     </div>
                   </div>
                 </div>
 
-              </div>
-
               {/* Submit Button */}
               <div>
                 <button
                   type="submit"
-                  className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-500 font-semibold"
+                  className="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-indigo-500 font-semibold"
                 >
                   Submit
                 </button>

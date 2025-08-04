@@ -11,104 +11,85 @@ function Login() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
-          Login to your account
-        </h2>
-      </div>
+    
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <Formik
-          initialValues={{ email: '', password: '' }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = 'Required';
-            }
-            if (!values.password) {
-              errors.password = 'Required';
-            }
-            return errors;
-          }}
+<div className="min-h-screen flex items-center justify-center bg-black">
+  <div className="w-full max-w-sm border border-yellow-500 shadow-[0_0_10px_#facc15] rounded-lg p-8 bg-[#1a1a1a]">
+    <h2 className="text-center text-2xl font-bold text-yellow-500 mb-6">Login</h2>
 
-          onSubmit={async (values, { setSubmitting }) => {
-            try {
-              const res = await loginUser(values).unwrap();
-              localStorage.setItem('token', res.token);
-              localStorage.setItem('email', res.email);
-              navigate('/navbar');
-            } catch (err) {
-              alert('Login failed');
-            }
-          }}
+    <Formik
+      initialValues={{ email: '', password: '' }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.email) errors.email = 'Required';
+        if (!values.password) errors.password = 'Required';
+        return errors;
+      }}
+    onSubmit={async (values, { setSubmitting }) => {
+  try {
+    const res = await loginUser(values).unwrap();
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('email', res.email);
+    localStorage.setItem('role', res.role);
 
-        >
-          {() => (
-            <div className="border rounded-lg p-4 bg-gray-50">
-              <Form className="space-y-6">
-                {/* Email Field */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-900 text-left">
-                    Email address
-                  </label>
-                  <div className="mt-2">
-                    <Field
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                    />
-                    <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
-                  </div>
-                </div>
+    if (res.role === 'admin') {
+      navigate('/admin-dashboard');
+    } else {
+      navigate('/navbar');
+    }
+  } catch (err) {
+    alert('Login failed');
+  }
+}}
 
-                {/* Password Field */}
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-900">
-                      Password
-                    </label>
-                    <div className="text-sm">
-                      <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                        Forgot password?
-                      </a>
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    <Field
-                      type="password"
-                      name="password"
-                      autoComplete="current-password"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-                    />
-                    <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
-                  </div>
-                </div>
+    >
+      {() => (
+        <Form className="space-y-6">
+          {/* Email Field */}
+          <div>
+            <label className="block text-white font-bold text-sm mb-1">Email</label>
+            <Field
+              type="email"
+              name="email"
+              className="w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
+            />
+            <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+          </div>
 
-                {/* Submit Button */}
-                <div>
-                  <button
-                    type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-500"
-                  >
-                    Login
-                  </button>
-                </div>
+          {/* Password Field */}
+          <div>
+            <label className="block text-white font-bold text-sm mb-1">Password</label>
+            <Field
+              type="password"
+              name="password"
+              className="w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
+            />
+            <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+          </div>
 
-                <p className="text-sm text-center mt-4">
-                  Don't have an account?{' '}
-                  <Link to="/register" className="text-indigo-600 hover:underline">
-                    Register
-                  </Link>
-                </p>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-yellow-500 text-black font-semibold py-2 rounded hover:bg-yellow-400 transition"
+          >
+            Login
+          </button>
 
-              </Form>
-            </div>
-          )}
-        </Formik>
-      </div>
-    </div>
+          {/* Signup Link */}
+          <p className="text-sm text-center text-white mt-4">
+            Don't have an account?{' '}
+            <Link to="/register" className="text-yellow-400 hover:underline">
+              Sign up
+            </Link>
+          </p>
+        </Form>
+      )}
+    </Formik>
+  </div>
+</div>
+
+
+
   );
 }
 

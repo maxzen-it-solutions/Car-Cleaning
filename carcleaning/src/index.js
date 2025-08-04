@@ -14,6 +14,7 @@ import App from './App';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import Navbar from './Components/Navbar';
+import AdminDashboard from './Components/AdminDashboard';
 
 // ✅ Inline ProtectedRoute
 const ProtectedRoute = ({ children }) => {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Navigate to="/login" /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
-
+      {path:'/admin-dashboard', element:<AdminDashboard/>},
       // ✅ Protected Route for Navbar
       {
         path: '/navbar',

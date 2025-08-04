@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const registerRoutes = require('./routes/register');
 const loginRoutes = require('./routes/login');
-const protectedRoutes = require('./routes/protected'); // ✅ newly added
+
 
 const app = express();
 app.use(cors());

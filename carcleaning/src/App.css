@@ -1,4 +1,4 @@
-
+/* 
 .App {
   text-align: center;
 }
@@ -36,4 +36,13 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+input:-webkit-autofill {
+  background-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0 1000px #000000 inset !important;
+  -webkit-text-fill-color: white !important;
+  color: white !important;
+  transition: background-color 9999s ease-in-out 0s;
 }
