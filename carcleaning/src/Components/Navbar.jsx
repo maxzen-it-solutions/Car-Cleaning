@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
 const navigate = useNavigate();
   const toggleMenu = () => setMenuOpen(!menuOpen);
-
   const handleLogout = () => {
   // Clear any stored login data (if using localStorage or tokens)
   localStorage.removeItem('token');
   localStorage.removeItem('email');
   navigate('/login');
 };
+
   return (
     <>
       <nav className="w-full bg-black text-white px-6 py-4 flex items-center justify-between z-50 relative">
@@ -27,11 +28,12 @@ const navigate = useNavigate();
 
         {/* Desktop Nav Links */}
         <ul className="hidden md:flex flex-row space-x-6 font-medium text-base">
-          <li className="text-yellow-400 font-bold cursor-pointer">Homepage</li>
-          <li className="hover:text-yellow-400 cursor-pointer">About Us</li>
+          {/* <li className="text-yellow-400 font-bold cursor-pointer">Homepage</li> */}
+<Link to="/navbar" className="hover:text-yellow-400 cursor-pointer">Homepage</Link>
+                    <Link to="/about" className="hover:text-yellow-400 cursor-pointer">About Us</Link>
           <li className="hover:text-yellow-400 cursor-pointer">Services ▼</li>
           <li className="hover:text-yellow-400 cursor-pointer">Pages ▼</li>
-          <li className="hover:text-yellow-400 cursor-pointer">Contact Us</li>
+          <Link to="/contact" className="hover:text-yellow-400 cursor-pointer">Contact Us</Link>
           <li className="hover:text-yellow-400 cursor-pointer" onClick={handleLogout}>logout</li>
         </ul>
 
@@ -65,7 +67,7 @@ const navigate = useNavigate();
             {/* Header in mobile menu */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
               <div className="flex items-center space-x-2">
-                <img src="/logo.png" alt="Cars Buddy" className="h-8 w-auto" />
+                <img src="" alt="Cars Buddy" className="h-8 w-auto" />
                 <span className="text-xl font-bold">
                   <span className="text-yellow-400">Cars</span>Buddy
                 </span>
@@ -76,12 +78,15 @@ const navigate = useNavigate();
             </div>
 
             {/* Menu links */}
-            <ul className="flex flex-col px-6 py-6 space-y-6 text-lg">
-              <li className="hover:text-yellow-400 cursor-pointer">About Us</li>
+             <ul className="flex flex-col px-6 py-6 space-y-6 text-lg">
+              {/* <Link to="/hero" className="hover:text-yellow-400 cursor-pointer">Homepage</Link> */}
+                        <Link to="/about" className="hover:text-yellow-400 cursor-pointer">About Us</Link>
+
               <li className="hover:text-yellow-400 cursor-pointer">Services </li>
               <li className="hover:text-yellow-400 cursor-pointer">Gallery</li>
-              <li className="hover:text-yellow-400 cursor-pointer">Contact Us</li>
-               <li className="hover:text-yellow-400 cursor-pointer" onClick={handleLogout}>logout</li>
+              <Link to="/contact" className="hover:text-yellow-400 cursor-pointer">Contact Us</Link>
+
+              <li className="hover:text-yellow-400 cursor-pointer" onClick={handleLogout}>logout</li>
             </ul>
 
             {/* Make Appointment Button */}
