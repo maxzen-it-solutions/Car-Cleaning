@@ -37,17 +37,21 @@
   }
 } */
 
-.hero-section {
-  height: 50vh; /* full screen height */
-  background-image: url('./Assests/car_video_bg.jpg');
-  background-size: cover;   /* makes image cover entire area */
-  background-position: center; /* centers the image */
-  background-repeat: no-repeat; /* prevents repeating */
-  
-  display: flex;            /* center text horizontally & vertically */
-  align-items: center;
-  justify-content: center;
-  color: white;             /* text color */
-  font-size: 2rem;
-  text-align: center;
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: fadeLeft 1s ease-out forwards;
+  animation-delay: 0.5s; /* same as data-aos-delay="500" */
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
