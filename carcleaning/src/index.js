@@ -18,6 +18,7 @@ import Hero from './Components/Hero';
 import About from './Components/About';
 import  Contact  from './Components/Contact';
 import AdminDashboard from './Components/AdminDashboard';
+import BodyComponent from './Components/BodyComponent';
 
 
 
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Hero/>
+            <BodyComponent/>
           </ProtectedRoute>
         ),
        
