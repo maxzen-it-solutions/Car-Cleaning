@@ -1,12 +1,39 @@
-import React from "react";
+import React,{useState} from "react";
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 import heroBg from '../assets/contactbg1.jpg';
 import { FaCheck } from "react-icons/fa";
-
-
+import { useAddLeadMutation } from "../services/apiService"; // ✅ import mutation
+import { toast } from "react-toastify";
 function Contact  ()  {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: ""
+  });
+   const [addLead, { isLoading }] = useAddLeadMutation(); // ✅ mutation hook
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await addLead(formData).unwrap(); // send data to backend
+      toast.success("Your message has been sent successfully!");
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Error sending contact form:", error);
+      toast.error("Failed to send your message");
+    }
+  };
+
   return (
     <div className="bg-[#070707] text-white font-sans">
       {/* Hero Section */}
@@ -41,7 +68,7 @@ function Contact  ()  {
         >
           <FaPhoneAlt className="text-3xl mx-auto text-yellow-400" />
           <h3 className="text-xl mt-4 mb-2 font-semibold">Call Us Anytime</h3>
-          <p className="text-yellow-400">+91 98765 43210</p>
+          <p className="text-yellow-400">+91 9339913399</p>
         </motion.div>
 
         {/* Email */}
@@ -72,26 +99,24 @@ function Contact  ()  {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <span className="text-yellow-400">Let’s Talk!</span> Your Car Deserves the Best Care
+            <span className="text-yellow-400">Talk to Us</span> – Because Your Car Deserves the Best!
           </motion.h2>
 
           <p className="text-gray-300 mb-6">
-            Have a question about our car detailing services? Need expert advice on how to keep your vehicle looking its best?
+            Have a question about our car Cleaning services? Need expert advice on how to keep your vehicle looking its best?
             We’re here to assist you! Whether you want to book an appointment, get a quote, or simply learn more about our
             services, don’t hesitate to reach out.
           </p>
 
-          <h3 className="text-xl font-semibold mb-3">Why Should Reach Us Out?</h3>
+          <h3 className="text-xl font-semibold mb-3">Why Contact Us?</h3>
 
           <p className="text-gray-300 mb-4">
-            Our professional car detailing and maintenance services help elevate your driving comfort, vehicle appearance,
-            and long-term performance on every journey.
+            Our expert car care keeps your vehicle spotless, gleaming, and fully protected, boosting both its appearance and performance.
           </p>
 
           <ul className="space-y-2 mb-6">
             {[
-              "Expert Detailing",
-              "Personalized Service",
+              "Professional Cleaning",
               "Experienced Team",
               "Easy & Fast Booking",
               "Customer First",
@@ -128,58 +153,79 @@ function Contact  ()  {
         </div>
 
         {/* Left: Contact Form - Comes last on mobile */}
-        <form className="space-y-6 order-last md:order-none">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block mb-2 text-sm font-medium">Name</label>
-              <input
-                type="text"
-                placeholder="Your name here"
-                className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
+        <form onSubmit={handleSubmit} className="space-y-6 order-last md:order-none">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block mb-2 text-sm font-medium">Name</label>
+             
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your name here"
+                  className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Your email here"
+                  className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">Phone</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Your number here"
+                  className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium">Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  placeholder="Your subject here"
+                  className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  required
+                />
+              </div>
             </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium">Email</label>
-              <input
-                type="email"
-                placeholder="Your email here"
-                className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium">Phone</label>
-              <input
-                type="tel"
-                placeholder="Your number here"
-                className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium">Subject</label>
-              <input
-                type="text"
-                placeholder="Your subject here"
-                className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
-            </div>
-          </div>
 
-          <div>
-            <label className="block mb-2 text-sm font-medium">Message</label>
-            <textarea
-              rows="9"
-              placeholder="Tell us anything about your lovely car"
-              className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            ></textarea>
-          </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium">Message</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="9"
+                placeholder="Tell us anything about your lovely car"
+                className="w-full p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                required
+              ></textarea>
+            </div>
 
-          <button
-            type="submit"
-            className="w-full bg-yellow-400 text-black py-3 rounded-full font-semibold hover:bg-yellow-300 transition"
-          >
-            Submit Now
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full bg-yellow-400 text-black py-3 rounded-full font-semibold hover:bg-yellow-300 transition"
+            >
+              Submit Now
+            </button>
+          </form>
       </div>
     </section>
 
@@ -200,3 +246,6 @@ function Contact  ()  {
 };
 
 export default Contact;
+
+
+

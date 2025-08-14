@@ -1,12 +1,23 @@
-import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useRegisterMutation } from '../services/apiService'; // Your service file
 import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function Register() {
   const [registerUser] = useRegisterMutation();
   const navigate = useNavigate();
+ const [profilePicBase64, setProfilePicBase64] = useState('');
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicBase64(reader.result); // base64 string
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
  
       <div className="flex flex-col justify-center px-6 py-8 lg:px-8 bg-black">
@@ -23,6 +34,8 @@ function Register() {
             email: '',
             password: '',
             confirmPassword: '',
+            phone:'',
+           
             carName: '',
             carModel: '',
             carColor: '',
@@ -37,6 +50,8 @@ function Register() {
             if (!values.password) errors.password = 'Password is required';
             if (values.password !== values.confirmPassword)
               errors.confirmPassword = 'Passwords do not match';
+           
+
             return errors;
           }}
 
@@ -47,6 +62,8 @@ function Register() {
                 email: values.email,
                 password: values.password,
                 confirmPassword: values.confirmPassword,
+                phone:values.phone,
+                profilePic: profilePicBase64,
                 carDetails: {
                   carName: values.carName,
                   carModel: values.carModel,
@@ -71,7 +88,7 @@ function Register() {
 
 
         >
-          {() => (
+          {({ errors }) => (
             <Form className="space-y-6 bg-black p-6 rounded-lg shadow border border-yellow-500 shadow-[0_0_10px_#facc15]">
              
                 <h3 className="text-lg font-semibold mb-4 text-center text-yellow-500">Registration Form</h3>
@@ -118,6 +135,35 @@ function Register() {
                     <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
                   </div>
                 </div>
+                <div>
+  <label className="block text-white font-bold text-sm mb-1">Phone Number</label>
+  <Field
+    type="text"
+    name="phone"
+    className="mt-1 block w-full bg-black text-white border border-white-600 rounded px-3 py-2 focus:outline-none focus:border-white"
+  />
+</div>
+
+<div>
+                <label className="block text-white font-bold text-sm mb-1">Upload Profile Picture</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="mt-1 block w-full text-white"
+                />
+                {errors.profilePic && !profilePicBase64 && (
+                  <div className="text-red-500 text-sm mt-1">{errors.profilePic}</div>
+                )}
+                {profilePicBase64 && (
+                  <img
+                    src={profilePicBase64}
+                    alt="Profile Preview"
+                    className="mt-2 h-20 w-20 rounded-full object-cover border border-white"
+                  />
+                )}
+              </div>
+
 
                 {/* Car Details */}
                 <div className=" rounded-lg p-8 bg-black border border-yellow-500 ">
@@ -172,7 +218,7 @@ function Register() {
                     </div>
 
                     <div>
-                      <label className="block text-white font-bold text-sm mb-1">Parking</label>
+                      <label className="block text-white font-bold text-sm mb-1">Parking Slot</label>
                       <Field
                         type="text"
                         name="parking"

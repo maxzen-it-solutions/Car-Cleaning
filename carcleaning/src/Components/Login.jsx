@@ -23,22 +23,55 @@ function Login() {
         if (!values.password) errors.password = 'Required';
         return errors;
       }}
-    onSubmit={async (values, { setSubmitting }) => {
+   onSubmit={async (values, { setSubmitting }) => {
   try {
     const res = await loginUser(values).unwrap();
-    localStorage.setItem('token', res.token);
-    localStorage.setItem('email', res.email);
-    localStorage.setItem('role', res.role);
+    console.log("Login API full response:", res);
 
-    if (res.role === 'admin') {
-      navigate('/admin-dashboard');
+    // Try multiple possible locations for token
+    const token =
+      res.token || 
+      res.data?.token || 
+      res.access_token || 
+      res?.user?.token;
+
+    if (!res.token) {
+  alert("No token returned from server!");
+  return;
+}
+
+console.log("Saving token to localStorage:", res.token);
+localStorage.setItem("isLoggedIn", "true"); // ✅ THIS IS WHAT YOUR PRICES PAGE WILL CHECK
+localStorage.setItem("token", res.token);
+localStorage.setItem("email", res.email);
+localStorage.setItem("role", res.role);
+window.dispatchEvent(new Event("storage"));
+
+console.log("After save:", {
+  token: localStorage.getItem("token"),
+  email: localStorage.getItem("email"),
+  role: localStorage.getItem("role"),
+});
+
+  if ((res.role || res.data?.role || res?.user?.role) === "admin") {
+      navigate("/dashboard/admindashboard");
     } else {
-      navigate('/navbar');
+      const redirectPath = localStorage.getItem("redirectAfterLogin");
+      if (redirectPath) {
+        localStorage.removeItem("redirectAfterLogin");
+        navigate(redirectPath);
+      } else {
+        navigate("/");
+      }
     }
+
   } catch (err) {
-    alert('Login failed');
+    console.error("Login error:", err);
+    alert("Login failed");
   }
 }}
+
+
 
     >
       {() => (
