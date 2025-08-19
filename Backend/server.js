@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/CarBuddy', {
+mongoose.connect('mongodb+srv://hackerpratap7:Pratap%402345@cluster0.6mmtkxm.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
