@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://hackerpratap7:Pratap%402345@cluster0.6mmtkxm.mongodb.net/', {
+mongoose.connect('mongodb+srv://hackerpratap7:Pratap%402345@cluster0.6mmtkxm.mongodb.net/Carbuddy?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
