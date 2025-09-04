@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/', async (req, res) => {
+
+
   const { email, password } = req.body;
 
   const user = await Register.findOne({ email });
@@ -21,9 +23,11 @@ router.post('/', async (req, res) => {
     { expiresIn: '2h' }
   );
 
+
   // ✅ Send role back in the response
   res.status(200).json({
     token,
+      userId: user._id.toString(),
     email: user.email,
     role: user.role  // <--- this was missing
   });
