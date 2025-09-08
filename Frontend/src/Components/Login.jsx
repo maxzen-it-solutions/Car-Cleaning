@@ -50,11 +50,11 @@ function Login() {
 
     // ✅ Redirect
     if (role === "admin") {
-      navigate("/dashboard/admindashboard");
+      navigate("/dashboard/admindashboard",{replace:true});
     } else if (role === "employee") {
-      navigate("/dashboard/empdashboard");
+      navigate("/dashboard/empdashboard",{replace:true});
     } else {
-      navigate("/");
+      navigate("/",{replace:true});
     }
   
  

@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa";
 import { FaUser, FaFolder } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PopupForm from "./PopupForm";
+import { useNavigate } from "react-router-dom";
 
 import card1 from "../assets/card1.jpg";
 import card2 from "../assets/card2.jpg";
@@ -16,6 +17,7 @@ function Hero() {
   // const ref = useRef(null);
   const { ref, inView } = useInView({ triggerOnce: true });
   const [count, setCount] = useState(0); // You can animate this if needed
+
   useEffect(() => {
     if (inView && count < 85) {
       let start = 0;

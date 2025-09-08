@@ -78,13 +78,13 @@ const router = createBrowserRouter([
     path: '/dashboard',
     element: <App />, // still uses App so Navbar/Footer hiding applies
     children: [
-      { path: 'admindashboard', element: <AdminDashboard /> },
+      { path: 'admindashboard', element: <ProtectedRoute>  <AdminDashboard /></ProtectedRoute> },
       { path: 'customers', element: <Customers /> },
       { path: 'leads', element: <Leads /> },
       {path: 'faq', element: <Faq /> },
       {path:'allOrders',element:<Orders/>},
-    { path: 'manageemployees', element: <ManageEmployees /> }, // ✅ NEW
-          { path: 'empdashboard', element: <EmpDashboard /> }, // ✅ Added Employee Dashboard route
+    { path: 'manageemployees', element:<ProtectedRoute>  <ManageEmployees /></ProtectedRoute>  }, // ✅ NEW
+          { path: 'empdashboard', element: <ProtectedRoute> <EmpDashboard /> </ProtectedRoute> }, // ✅ Added Employee Dashboard route
           {path : 'employeeleads', element : <EmployeeLeads/>}
     ],
   },
