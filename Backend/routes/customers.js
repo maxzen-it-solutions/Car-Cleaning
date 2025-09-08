@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Register = require('../models/register');
+const authenticateToken = require('../middleware/auth');
 // const register = require('../models/register');
 
 
 // GET all users from 'registers' collection
 // GET all users from 'registers' collection
-router.get('/', async (req, res) => {
+router.get('/',authenticateToken, async (req, res) => {
   try {
     const customers = await Register.find(); // if use{ role: 'user' }✅ only users with role 'user'
     res.json(customers);
