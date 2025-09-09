@@ -35,7 +35,7 @@ function Contact() {
   };
 
   return (
-    <div className="bg-[#070707] text-white font-sans">
+    <div className=" w-full overflow-x-hidden bg-[#070707] text-white font-sans">
 
       {/* Hero Section */}
       <section className="py-24 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }}>
@@ -51,12 +51,12 @@ function Contact() {
           {[{
             icon: <FaMapMarkerAlt className="text-3xl mx-auto text-yellow-400" />,
             title: "Location",
-            info: "123 Main Street, Tech City, India",
+            info: "admin@carsbuddy.net",
             anim: { initial: { x: -100, opacity: 0 }, whileInView: { x: 0, opacity: 1 } }
           },{
             icon: <FaPhoneAlt className="text-3xl mx-auto text-yellow-400" />,
             title: "Call Us Anytime",
-            info: "+91 7993319933",
+            info: "+91 9339913399",
             anim: { initial: { y: 100, opacity: 0 }, whileInView: { y: 0, opacity: 1 } }
           },{
             icon: <FaEnvelope className="text-3xl mx-auto text-yellow-400" />,
@@ -149,7 +149,7 @@ function Contact() {
         <iframe
           className="w-full h-full"
           title="Google Map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.389664134884!2d73.91534917506523!3d18.555330582557347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c10d0d8d3c0f%3A0x71e18571c68cd55!2sPune%20University!5e0!3m2!1sen!2sin!4v1690900347051!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3130.8242999996796!2d78.35308207420864!3d17.529173383382442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ddcb8044ab3%3A0xd490b22fe8e6e991!2sSV%20Landmark%20Apartment!5e1!3m2!1sen!2sin!4v1757449950333!5m2!1sen!2sin"
           loading="lazy"
           allowFullScreen
         ></iframe>
