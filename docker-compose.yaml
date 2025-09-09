@@ -1,24 +1,19 @@
+version: '3.8'
 services:
   backend:
-    build: ./Backend
-    container_name: car-backend
+    build:
+      context: ./Backend
+      dockerfile: dockerfile
+    container_name: backend
     ports:
       - "5000:5000"
-    volumes:
-      - ./Backend:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
- 
+    restart: always
+
   frontend:
-    build: ./Frontend
-    container_name: car-frontend
+    build:
+      context: ./Frontend
+      dockerfile: dockerfile
+    container_name: frontend
     ports:
-      - "3000:3000"
-    volumes:
-      - ./Frontend:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    depends_on:
-      - backend
+      - "3000:80"
+    restart: always
