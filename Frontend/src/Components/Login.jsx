@@ -54,7 +54,8 @@ function Login() {
     } else if (role === "employee") {
       navigate("/dashboard/empdashboard",{replace:true});
     } else {
-      navigate("/",{replace:true});
+      navigate("/profilepage",{replace:true});
+      window.location.reload();
     }
   
  

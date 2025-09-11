@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const ContactLead = require("../models/ContactLead");
-
+const authenticateToken = require("../middleware/auth");
 router.post("/", async (req, res) => {
   try {
     const lead = new ContactLead(req.body);

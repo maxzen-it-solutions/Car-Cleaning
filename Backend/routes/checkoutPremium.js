@@ -3,7 +3,8 @@
 const express = require("express");
 const router = express.Router();
 const CheckoutPremium=require("../models/checkoutPremium")
-router.post("/", async (req, res) => {
+const authenticateToken = require("../middleware/auth");
+router.post("/",async (req, res) => {
   try {
       console.log("checkoutPremium route hit");
     const order = new CheckoutPremium(req.body);

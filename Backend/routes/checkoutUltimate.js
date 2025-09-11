@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const CheckoutUltimate=require("../models/checkoutUltimate")
+const authenticateToken = require("../middleware/auth");
 router.post("/", async (req, res) => {
   try {
       console.log("checkoutPremium route hit");

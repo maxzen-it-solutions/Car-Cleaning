@@ -4,8 +4,8 @@ const router = express.Router();
 const CheckoutBasic = require("../models/checkoutBasic");
 const CheckoutPremium = require("../models/checkoutPremium");
 const CheckoutUltimate = require("../models/checkoutUltimate");
-
-router.get("/", async (req, res) => {
+const authenticateToken = require("../middleware/auth");
+router.get("/",authenticateToken, async (req, res) => {
   try {
     const basic = await CheckoutBasic.find();
     const premium = await CheckoutPremium.find();

@@ -51,12 +51,12 @@ function Contact() {
           {[{
             icon: <FaMapMarkerAlt className="text-3xl mx-auto text-yellow-400" />,
             title: "Location",
-            info: "admin@carsbuddy.net",
+            info: "301 SV land mark bachupally hyderabad 500090",
             anim: { initial: { x: -100, opacity: 0 }, whileInView: { x: 0, opacity: 1 } }
           },{
             icon: <FaPhoneAlt className="text-3xl mx-auto text-yellow-400" />,
             title: "Call Us Anytime",
-            info: "+91 9339913399",
+            info: "+91 7993319933",
             anim: { initial: { y: 100, opacity: 0 }, whileInView: { y: 0, opacity: 1 } }
           },{
             icon: <FaEnvelope className="text-3xl mx-auto text-yellow-400" />,
@@ -136,7 +136,7 @@ function Contact() {
               <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
               <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your email" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
               <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Your phone" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
-              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
+              <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Location" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required />
             </div>
             <textarea name="message" value={formData.message} onChange={handleChange} rows="6" placeholder="Your message" className="w-full p-3 sm:p-4 rounded bg-[#1e1e1e] border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" required></textarea>
             <button type="submit" className="w-full bg-yellow-400 text-black py-3 sm:py-4 rounded-full font-semibold hover:bg-yellow-300 transition">Submit Now</button>

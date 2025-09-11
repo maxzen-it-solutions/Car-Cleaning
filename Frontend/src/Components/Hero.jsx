@@ -55,7 +55,7 @@ function Hero() {
           >
             Your Car’s Best Buddy Every Day, Without Fail
           </motion.h1>
-          <Link to="/Servicespage">
+          <Link to="/login">
             <button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-lg px-6 py-3 rounded-full mb-14 transition">
               Join the Buddy Family
             </button>{" "}
@@ -335,12 +335,10 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right side */}
           <div className="md:col-span-2">
-            {/* Animated Heading */}
             <motion.h2
-              initial={{ opacity: 0, x: -100 }} // Start from left
-              whileInView={{ opacity: 1, x: 0 }} // Move to original position
+              initial={{ opacity: 0, x: -100 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight"
@@ -350,7 +348,6 @@ function Hero() {
               <span className="text-yellow-400">Care for Your Car</span>
             </motion.h2>
 
-            {/* Tagline & Description */}
             <div className="grid md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-1 text-left text-white text-2xl md:text-3xl font-semibold leading-snug">
                 Transforming <br /> Cars into <br /> Masterpieces
@@ -365,7 +362,6 @@ function Hero() {
               </p>
             </div>
 
-            {/* Animated Feature Grid */}
             <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
               {[
                 {
@@ -413,11 +409,8 @@ function Hero() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="bg-black text-white py-20 px-6 md:px-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
+      
+          {/* <div className="text-center mb-16">
             <motion.p
               className="text-sm text-gray-400 uppercase tracking-wider mb-2"
               initial={{ opacity: 0, y: -20 }}
@@ -450,14 +443,12 @@ function Hero() {
               deep-clean treatments, our packages ensure your car stays
               spotless, fresh, and well-maintained — inside and out.
             </motion.p>
-          </div>
+          </div> */}
 
-          {/* Plans Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 title: "Gold",
-                // price: "₹299.99",
                 desc: "Designed for regular maintenance, keeping your car clean and fresh.",
                 features: [
                   "Exterior cleaning using dry/wet microfiber cloths",
@@ -471,7 +462,6 @@ function Hero() {
               {
                 title: "Platinum",
                 
-                // price: "₹499.99",
                 desc: "A deep clean inside and out, perfect for cars needing extra attention.",
                 features: [
                   "Everything in Gold Plan Applies",
@@ -486,7 +476,6 @@ function Hero() {
               {
                 title: "Diamond",
                 
-                // price: "₹999.99",
                 desc: "Perfect clean like a new car, service for cars needing more extra attention.",
                 features: [
                   "Everything in Platinum Plan Applies",
@@ -515,17 +504,13 @@ function Hero() {
                   viewport={{ once: true }}
                   className="bg-[#1A1A1A] p-6 rounded-2xl shadow-md"
                 >
-                  {/* Card Header */}
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold text-white">
                       {plan.title}
                     </h3>
-                    {/* <span className="text-xs bg-gray-800 px-3 py-1 rounded-md text-white">
-                      Estimated Time: {plan.time}
-                    </span> */}
+                  
                   </div>
 
-                  {/* Price */}
                   <div className="mb-4">
                     <p className="text-sm text-gray-400 mb-1">Start With</p>
                     <h4 className="text-4xl font-bold text-yellow-400">
@@ -533,15 +518,8 @@ function Hero() {
                     </h4>
                   </div>
 
-                  {/* Description */}
                   <p className="text-sm text-gray-400 mb-6">{plan.desc}</p>
 
-                  {/* Button */}
-                  {/* <Link to="/CheckoutBasic" className="w-full block">
-  <button className="w-full bg-yellow-400 text-black font-semibold py-3 rounded-full hover:bg-yellow-300 transition-all">
-    Choose This Plan
-  </button>
-</Link> */}
                   {plan.title === "Gold" && (
                     <Link to="/Prices" className="w-full block">
                       <button
@@ -575,7 +553,6 @@ function Hero() {
                     </Link>
                   )}
 
-                  {/* Features */}
                   <div className="mt-8 bg-[#222] bg-opacity-60 p-5 rounded-xl border border-gray-700">
                     <h5 className="text-md text-white font-semibold mb-4">
                       Feature :
@@ -596,8 +573,8 @@ function Hero() {
               );
             })}
           </div>
-        </div>
-      </section>
+        </div> */}
+      
 
       {/* Hero Section */}
       <section className="relative w-full h-80 flex items-center justify-center bg-black overflow-hidden">
@@ -627,7 +604,7 @@ function Hero() {
       className="text-gray-200 text-lg sm:text-xl mb-8"
     >
       Book Your Cleaning Today! And Get{" "}
-      <span className="text-yellow-400 font-semibold">30% Cut Off</span>
+      <span className="text-yellow-400 font-semibold">20% Cut Off</span>
     </motion.p>
 
     <motion.div

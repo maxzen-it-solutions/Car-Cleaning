@@ -99,15 +99,15 @@ const Navbar = () => {
 
         
         {/* Make Appointment Button - Desktop */}
-        <Link to="/Contact">
+        {/* <Link to="/Contact">
           <button className="hidden lg:block border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold">
             Make Appointment
           </button>
-        </Link>
+        </Link> */}
 
         {/* Right side profile icon */}
         {/* <div className="hidden md:flex items-center space-x-2 relative"> */}
-          <div className="hidden lg:flex items-center space-x-2 relative">
+          {/* <div className="hidden lg:flex items-center space-x-2 relative">
           <div
             className="flex items-center space-x-1 cursor-pointer hover:text-yellow-400"
             onClick={handleProfileClick}
@@ -143,7 +143,68 @@ const Navbar = () => {
               </button>
             </div>
           )}
-        </div>
+        </div> */}
+        <div className="relative">
+  {/* If user NOT logged in → Show Login & Signup */}
+  {!token && (
+    <div className="flex space-x-4">
+      <Link to="/login">
+        <button className="hidden lg:block border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold">
+          Login
+        </button>
+      </Link>
+      <Link to="/register">
+        <button className="hidden lg:block border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold">
+          Signup
+        </button>
+      </Link>
+    </div>
+  )}
+
+    {token && (
+    <div className="hidden lg:flex items-center space-x-4">
+      {/* Profile Icon (click → profile page) */}
+      <button
+        onClick={() => navigate("/profilepage")}
+        className="flex items-center justify-center rounded-full bg-gray-400"
+      >
+        {/* You can replace this emoji with an icon (e.g., from lucide-react or FontAwesome) */}
+        <FaUserCircle size={28} />
+      </button>
+
+      {/* Logout Button */}
+      <button
+        onClick={handleLogout}
+        className="border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold"
+      >
+        Logout
+      </button>
+    </div>
+  )}
+  </div>
+  
+  {/* If user IS logged in → Show dropdown */}
+  {/* {dropdownOpen && token && (
+    <div className="absolute top-1 right-0 mt-10 w-40 bg-white text-black rounded shadow-lg">
+      <button
+        onClick={() => {
+          setDropdownOpen(false);
+          navigate("/profilepage");
+        }}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100"
+      >
+        Profile
+      </button>
+      <button
+        onClick={handleLogout}
+        className="w-full text-left px-4 py-2 hover:bg-gray-100"
+      >
+        Logout
+      </button>
+    </div>
+  )} */}
+
+
 
 
         {/* Mobile Toggle */}
@@ -158,7 +219,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -181,7 +241,6 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Menu links */}
             <ul className="flex flex-col px-6 py-6 space-y-6 text-lg">
               <Link
                 to="/"
@@ -204,7 +263,6 @@ const Navbar = () => {
               >
                 Services
               </Link>
-              {/* <li className="hover:text-yellow-400 cursor-pointer">Gallery</li> */}
               <Link
                 to="/contact"
                 onClick={() => setMenuOpen(false)}
@@ -213,73 +271,64 @@ const Navbar = () => {
                 Contact Us
               </Link>
 
-              <li
-                className="hover:text-yellow-400 cursor-pointer flex items-center justify-between"
-                onClick={handleProfileClick}
-              >
-                <div className="flex items-center space-x-2">
-                  <FaUserCircle size={22} />
-                  <span>{token ? "Profile" : "Login"}</span>
-                </div>
-                {token && (
-                  <FaChevronDown
-                    className={`transition-transform ${
-                      dropdownOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                )}
-              </li>
+              <li className="flex flex-col space-y-2">
+  {!token ? (
+    // 🔹 If user NOT logged in → show Login & Signup
+    <div className="flex flex-col space-y-2">
+      <Link to="/login">
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold w-full"
+        >
+          Login
+        </button>
+      </Link>
+      <Link to="/register">
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold w-full"
+        >
+          Signup
+        </button>
+      </Link>
+    </div>
+  ) : (
+    // 🔹 If user IS logged in → show Profile + Logout
+    
+     <div className="flex flex-col space-y-2">
+      <button
+        onClick={() => {
+          navigate("/profilepage");
+          setMenuOpen(false);
+        }}
+        className="border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold w-full"
+      >
+        {/* <FaUserCircle size={28} /> */}
+        profile
+      </button>
 
-              {/* Dropdown items */}
-              {dropdownOpen && (
-                <ul className="ml-8 mt-2 text-sm text-gray-300 space-y-2">
-                  {token ? (
-                    <>
-                      <li>
-                        <Link
-                          to="/profilepage"
-                          className="hover:text-yellow-400"
-                          onClick={() => {
-                            setDropdownOpen(false);
-                            setMenuOpen(false); // ✅ close menu after navigation
-                          }}
-                        >
-                          My Profile
-                        </Link>
-                      </li>
-                      <li
-                        className="hover:text-yellow-400 cursor-pointer"
-                        onClick={handleLogout}
-                      >
-                        Logout
-                      </li>
-                    </>
-                  ) : (
-                    <li>
-                      <Link
-                        to="/login"
-                        className="hover:text-yellow-400"
-                        onClick={() => {
-                          setDropdownOpen(false);
-                          setMenuOpen(false); // ✅ close menu after navigation
-                        }}
-                      >
-                        Login
-                      </Link>
-                    </li>
-                  )}
-                </ul>
-              )}
-            </ul>
+      <button
+        onClick={() => {
+          handleLogout();
+          setMenuOpen(false);
+        }}
+        className="border border-white px-5 py-2 rounded-full hover:bg-white hover:text-black transition font-semibold w-full"
+      >
+        Logout
+      </button>
+    </div>
+  )}
+</li>
 
-            {/* Make Appointment Button */}
-            <div className="px-6">
+                           </ul>
+
+            {/* <div className="px-6">
               <Link to="/Contact" onClick={() => setMenuOpen(false)}>
                 <button className="w-full border border-white px-5 py-3 rounded-full hover:bg-white hover:text-black transition font-semibold">
                   Make Appointment
                 </button>
               </Link>
-            </div>
+            </div> */}
           </motion.div>
         )}
       </AnimatePresence>

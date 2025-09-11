@@ -13,7 +13,7 @@ function Yourcars() {
           Your Car’s Best Look Is Just One Detail Away
         </h1>
         <div className="text-xl md:text-2xl font-bold text-white drop-shadow-lg">
-          Book Your Cleaning Today! And <p className='text-yellow-500'>Get 30% Cut Off</p>
+          Book Your Cleaning Today! And <p className='text-yellow-500'>Get 20% Cut Off</p>
         </div>
 
         <Link

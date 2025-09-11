@@ -54,7 +54,7 @@ export default function Footer() {
           <div>
             <h4 className="text-xl sm:text-2xl text-yellow-400 font-semibold mb-2">Contact Info</h4>
             <div className="h-px bg-gray-600 mb-2 sm:mb-4 w-24 md:w-4/5"></div>
-            <p className="text-sm sm:text-lg text-gray-400 mb-1">+91 9339913399</p>
+            <p className="text-sm sm:text-lg text-gray-400 mb-1">+91 7993319933</p>
             <p className="text-sm sm:text-lg text-gray-400">admin@carsbuddy.net</p>
           </div>
         </div>

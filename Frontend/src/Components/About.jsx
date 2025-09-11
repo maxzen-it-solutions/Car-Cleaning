@@ -243,25 +243,89 @@ export default function About() {
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="bg-black text-white py-16 sm:py-24 px-4 sm:px-6 md:px-20 overflow-x-auto">
-        <div className="text-center mb-12 sm:mb-16">
-          <h3 className="text-gray-400 font-bold uppercase tracking-widest text-base mb-4">Customer Reviews</h3>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
-            Customer <span className="text-yellow-400">Experiences</span> <br /> That Speak For Themselves
-          </h2>
-        </div>
 
-        <div className="flex gap-4 sm:gap-6 md:gap-8">
-          {reviews.map((review, index) => (
-            <div key={index} className="bg-zinc-900 min-w-[280px] sm:min-w-[320px] p-6 sm:p-8 rounded-md shadow-lg flex-shrink-0">
-              <p className="mb-4 text-gray-200 leading-relaxed text-sm sm:text-base">{review.text}</p>
-              <div>
-                <h4 className="font-bold text-lg text-yellow-400">{review.name}</h4>
-                <p className="text-xs sm:text-sm text-gray-400">{review.role}</p>
-              </div>
-            </div>
-          ))}
+
+       <section className="bg-black text-white py-24 px-6 md:px-20 overflow-hidden">
+        {/* Section Title */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <h3 className="text-gray-400 font-bold uppercase tracking-widest text-base xl:text-lg mb-4">
+            Customer Reviews
+          </h3>
+          <h2 className="text-3xl sm:text-5xl xl:text-6xl font-bold leading-tight">
+            Customer <span className="text-yellow-400">Experiences</span> <br />
+            That Speak For Themselves
+          </h2>
+        </motion.div>
+
+        {/* Horizontal Infinite Scroll */}
+        <div className="relative w-full overflow-hidden">
+          <motion.div
+            className="flex flex-nowrap gap-6"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 40, // Adjust for speed
+            }}
+          >
+            {/* Duplicate the reviews twice in one line */}
+            {Array(2)
+              .fill([
+                {
+                  text: "Unbelievable transformation! My car shines like it just rolled off the showroom floor. The precision and care were outstanding. I’m beyond impressed!",
+                  name: "Mani Kumar",
+                  role: "Auto Dealer",
+                },
+                {
+                  text: "Simply outstanding. My vintage beauty has never looked better. Every inch was polished to perfection!",
+                  name: "Raj Paul",
+                  role: "Vintage Car Owner",
+                },
+                {
+                  text: "This Cleaning service is on another level. My car feels brand new inside and out — I can’t stop admiring it.",
+                  name: "Poojitha M",
+                  role: "Car Owner",
+                },
+                {
+                  text: "I love stepping out in the morning to find my car sparkling, without having lifted a finger.",
+                  name: "Sowmya",
+                  role: "Car Owner",
+                },
+                {
+                  text: "Remarkable service! My vehicle hasn’t looked this stunning in years. I’ll be booking regular appointments!",
+                  name: "Hafsha Jasmine",
+                  role: "Auto Dealer",
+                },
+                {
+                  text: "From the warm welcome to the final polish, everything was flawless. My car is spotless and smells fresh.",
+                  name: "Pratap",
+                  role: "Car Collector",
+                },
+              ])
+              .flat()
+              .map((review, index) => (
+                <div
+                  key={index}
+                  className="bg-zinc-900 min-w-[320px] max-w-[320px] p-8 rounded-md shadow-lg flex-shrink-0"
+                >
+                  <p className="mb-6 text-gray-200 leading-relaxed text-sm">
+                    {review.text}
+                  </p>
+                  <div>
+                    <h4 className="font-bold text-lg text-yellow-400">
+                      {review.name}
+                    </h4>
+                    <p className="text-xs text-gray-400">{review.role}</p>
+                  </div>
+                </div>
+              ))}
+          </motion.div>
         </div>
       </section>
 
@@ -354,7 +418,7 @@ export default function About() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-lg sm:text-xl md:text-2xl mb-8 text-white/90"
           >
-            Book Your Cleaning Today! And Get <span className="text-yellow-400 font-bold">30% Cut Off</span>
+            Book Your Cleaning Today! And Get <span className="text-yellow-400 font-bold">20% Cut Off</span>
           </motion.p>
           
           <motion.button

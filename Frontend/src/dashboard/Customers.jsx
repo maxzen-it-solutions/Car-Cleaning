@@ -154,14 +154,17 @@ const handleSubmit = async (e) => {
             onChange={(e) => setFormData({ ...formData, carNumber: e.target.value })}
             className="p-2 rounded bg-gray-800 text-white"
           />
+          
           <select
             value={formData.role}
             onChange={(e) => setFormData({ ...formData, role: e.target.value })}
             className="p-2 rounded bg-gray-800 text-white"
           >
             <option value="user">User</option>
+            <option value="employee">Employee</option> {/* 👈 Added */}
             <option value="admin">Admin</option>
           </select>
+
           <button type="submit" className="bg-green-600 px-4 py-2 rounded text-white">
             {editingId ? 'Update' : 'Add'} User
           </button>

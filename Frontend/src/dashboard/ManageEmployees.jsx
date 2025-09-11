@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminSidebar from "./AdminSidebar";
+import AREAS from "../constants/areas";
 
 export default function ManageEmployees() {
   const [employees, setEmployees] = useState([]);
@@ -60,7 +61,7 @@ export default function ManageEmployees() {
               <tr>
                 <th className="px-4 py-2 text-left">Name</th>
                 <th className="px-4 py-2 text-left">Email</th>
-                <th className="px-4 py-2 text-left">Assigned Area</th>
+                <th className="px-4 py-2 text-left">Assigned Apartment</th>
                 <th className="px-4 py-2 text-left">Action</th>
               </tr>
             </thead>
@@ -75,11 +76,12 @@ export default function ManageEmployees() {
                       onChange={(e) => handleAreaChange(emp._id, e.target.value)}
                       className="p-2 rounded bg-gray-800 text-white"
                     >
-                      <option value="">-- Select Area --</option>
-                      <option value="Miyapur">Miyapur</option>
-                      <option value="Kukatpally">Kukatpally</option>
-                      <option value="KPHB">KPHB</option>
-                      <option value="Chandanagar">Chandanagar</option>
+                      <option value="">-- Select Apartment--</option>
+                      {AREAS.map((area, idx) => (
+                        <option key={idx} value={area}>
+                          {area}
+                        </option>
+                      ))}
                     </select>
                   </td>
                   <td className="px-4 py-2">

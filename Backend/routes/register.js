@@ -1,13 +1,18 @@
+
+
 const express = require("express");
 const router = express.Router();
 const Register = require("../models/register");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-// const JWT_SECRET = "your_jwt_secret_key";JWT_SECRET=super_strong_secret
-const JWT_SECRET = "super_strong_secret"
-
+const JWT_SECRET = "super_strong_secret";
 
 const authenticateToken = require("../middleware/auth");
+
+// ✅ helper to escape regex special characters
+function escapeRegex(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 // 🔹 REGISTER new user / employee / admin
 router.post("/", async (req, res) => {
@@ -55,13 +60,15 @@ router.post("/", async (req, res) => {
       userData.carDetails = carDetails;
 
       // Take area from carDetails.address if area not passed
-      const userArea = (area || carDetails?.address || "").trim().toLowerCase();
+      const userArea = (area || carDetails?.address || "").trim();
 
       if (userArea) {
-        // Find employee with same area (case-insensitive)
+        const safeArea = escapeRegex(userArea);
+
+        // Find employee with same area (case-insensitive exact match)
         const employee = await Register.findOne({
           role: "employee",
-          area: { $regex: new RegExp(`^${userArea}$`, "i") },
+          area: { $regex: new RegExp(`^${safeArea}$`, "i") },
         });
 
         if (employee) {
@@ -80,13 +87,16 @@ router.post("/", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.status(201).json({ message: "Registered successfully", token, user: newUser });
+    res
+      .status(201)
+      .json({ message: "Registered successfully", token, user: newUser });
   } catch (error) {
     console.error("Registration Error:", error);
-    res.status(500).json({ error: "Registration failed", details: error.message });
+    res
+      .status(500)
+      .json({ error: "Registration failed", details: error.message });
   }
 });
-
 
 // 🔹 UPDATE user
 router.put("/:id", async (req, res) => {
@@ -102,7 +112,11 @@ router.put("/:id", async (req, res) => {
       carDetails,
     };
 
-    const updated = await Register.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    const updated = await Register.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
     res.json(updated);
   } catch (err) {
     res.status(500).json({ error: "Failed to update user" });
@@ -122,7 +136,10 @@ router.delete("/:id", async (req, res) => {
 // 🔹 GET all users (any role)
 router.get("/", async (req, res) => {
   try {
-    const users = await Register.find().populate("assignedEmployee", "name email");
+    const users = await Register.find().populate(
+      "assignedEmployee",
+      "name email"
+    );
     res.json(users);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch users" });
@@ -130,7 +147,7 @@ router.get("/", async (req, res) => {
 });
 
 // 🔹 GET all employees only
-router.get("/employees",authenticateToken, async (req, res) => {
+router.get("/employees", async (req, res) => {
   try {
     const employees = await Register.find({ role: "employee" });
     res.json(employees);
@@ -178,8 +195,7 @@ router.put("/assign/:userId/:employeeId", async (req, res) => {
   }
 });
 
-
-// Get all leads for an employee based on area match
+// 🔹 Get all leads for an employee based on exact area match
 router.get("/employee/:id/leads", async (req, res) => {
   try {
     const employeeId = req.params.id;
@@ -191,11 +207,12 @@ router.get("/employee/:id/leads", async (req, res) => {
     }
 
     const employeeArea = (employee.area || "").trim();
+    const safeArea = escapeRegex(employeeArea);
 
-    // Fetch users whose carDetails.address matches employee area (case-insensitive)
+    // ✅ Exact match with special characters handled
     const leads = await Register.find({
       role: "user",
-      "carDetails.address": { $regex: `^${employeeArea}$`, $options: "i" },
+      "carDetails.address": { $regex: `^${safeArea}$`, $options: "i" },
     });
 
     res.json(leads);
@@ -204,6 +221,5 @@ router.get("/employee/:id/leads", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch leads" });
   }
 });
-
 
 module.exports = router;

@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const CheckoutBasic = require("../models/checkoutBasic");
-
+const authenticateToken = require("../middleware/auth");
 router.post("/", async (req, res) => {
   try {
     console.log("checkoutBasic route hit");

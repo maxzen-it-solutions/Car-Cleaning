@@ -12,6 +12,9 @@ const checkoutPremium = require("./routes/checkoutPremium");
 const checkoutUltimate = require("./routes/checkoutUltimate");
 const allOrders=require("./routes/ordersAll");
 const forgotRoute = require("./routes/forgotRoute");
+const planRoutes = require('./routes/plans');
+const checkoutRoutes = require("./routes/checkout");
+
 // server.js
 
 const app = express();
@@ -35,7 +38,8 @@ app.use('/api/customers', require('./routes/customers'));
 app.use("/api/contact", contactRoutes);
 app.use("/api/leads", leadsRoutes);
 app.use('/api/profile',profileRoutes);
-
+app.use('/api/plans', planRoutes);
+app.use("/api/checkout", checkoutRoutes);
 app.use("/api/checkoutUltimate", checkoutUltimate);
 app.use("/api/checkoutBasic", checkoutBasic);
 app.use("/api/checkoutPremium", checkoutPremium);

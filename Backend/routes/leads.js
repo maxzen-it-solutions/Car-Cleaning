@@ -2,9 +2,9 @@
 const express = require("express");
 const router = express.Router();
 const ContactLead = require("../models/ContactLead"); // reuse same model
-
+const authenticateToken = require("../middleware/auth");
 // 📌 Get All Leads
-router.get("/", async (req, res) => {
+router.get("/",authenticateToken, async (req, res) => {
   const leads = await ContactLead.find();
   res.json(leads);
 });

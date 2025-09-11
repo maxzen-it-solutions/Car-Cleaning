@@ -72,7 +72,7 @@ const PopupForm = ({ delay = 10000 }) => {
 
     {/* Subtext */}
     <p className="text-center text-gray-700 mb-6 text-sm sm:text-base">
-      Join our mailing list to get 15% off your next purchase.
+      Join our mailing list to get 20% off your next purchase.
     </p>
 
     {/* Form */}
@@ -105,11 +105,12 @@ const PopupForm = ({ delay = 10000 }) => {
         required
       />
       
+      
       <textarea
-        name="cardetails"
+        name="message"
         value={formData.message}
         onChange={handleChange}
-        placeholder="Car Details"
+        placeholder="Location"
         className="w-full border border-gray-300 rounded px-3 sm:px-4 py-2 sm:py-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm sm:text-base"
         required
       ></textarea>
